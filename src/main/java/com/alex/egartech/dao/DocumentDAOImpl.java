@@ -4,6 +4,7 @@ import com.alex.egartech.entity.Document;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -24,9 +25,21 @@ public class DocumentDAOImpl implements DocumentDAO{
     }
 
     @Override
-    public void saveDocument(Document document) {
+    public boolean saveDocument(Document document) {
         Session session = sessionFactory.getCurrentSession();
-        session.merge(document);
+        Query<Document> query = session.createQuery("from Document where number = :number and date = :date and department = :department and type = :type ", Document.class);
+        query.setParameter("number", document.getNumber());
+        query.setParameter("date", document.getDate());
+        query.setParameter("department", document.getDepartment());
+        query.setParameter("type", document.getType());
+
+        List<Document> documentList = query.getResultList();
+        if(!(documentList.size() >0)) {
+            session.merge(document);
+            return true;
+        }
+        else
+            return false;
     }
 
     @Override

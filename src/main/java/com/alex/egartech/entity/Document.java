@@ -1,6 +1,8 @@
 package com.alex.egartech.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -11,12 +13,18 @@ public class Document {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+    @Min(value = 1, message = "Номер должен быть 1 и более")
+    @Max(value = 10000, message = "Номер должен быть не более 10000")
     @Column(name = "number_doc")
     private int number;
+    @NotNull
+    //тут валидация даты, надо свою писать
     @Column(name = "date_doc")
     private LocalDate date;
+    @NotBlank(message = "Вы забыли ввести тип документа")
     @Column(name = "type_doc")
     private String type;
+    @NotBlank(message = "Вы забыли ввести наименование департамента")
     @Column(name = "department")
     private String department;
 

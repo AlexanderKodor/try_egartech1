@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DocumentDAO {
     public List<Document> getAllDocuments();
-    public void saveDocument(Document document);
+    public boolean saveDocument(Document document);
     public Document getDocument(int id);
     public void deleteDocument(int id);
 

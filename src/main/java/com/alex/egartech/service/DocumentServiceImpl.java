@@ -22,8 +22,8 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     @Transactional
-    public void saveDocument(Document document) {
-        documentDAO.saveDocument(document);
+    public boolean saveDocument(Document document) {
+        return documentDAO.saveDocument(document);
     }
 
     @Override

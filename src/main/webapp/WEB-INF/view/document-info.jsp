@@ -18,13 +18,18 @@
 <form:form action="saveDocument" modelAttribute="document">
     <from:hidden path="id"/>
     Номер <form:input path="number"/>
+    <form:errors path="number"/>
     <br><br>
-    Дата документа <form:input path="date"/>
+    Дата документа(формат ДД.ММ.ГГГГ) <form:input path="date"/>
+    <form:errors path="date"/>
     <br><br>
     Департамент <form:input path="department"/>
+    <form:errors path="department"/>
     <br><br>
     Тип документа <form:input path="type"/>
+    <form:errors path="type"/>
     <br><br>
+
     <input type="submit" value="OK">
 </form:form>
 
